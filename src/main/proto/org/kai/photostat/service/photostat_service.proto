@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.kai.photostat.service";
+option java_outer_classname = "PhotoStatServiceProto";
+
+package org.kai.photostat.service;
+
+// The PhotoStatService definition.
+service PhotoStatService {
+  // Asking the server to respond with photo statistic information
+  rpc GetPhotoStat (GetPhotoStatRequest) returns (stream GetPhotoStatResponse) {}
+}
+
+message GetPhotoStatRequest {
+  repeated string photo_paths = 1;
+}
+
+message GetPhotoStatResponse {
+  string dummy_response = 1;
+}

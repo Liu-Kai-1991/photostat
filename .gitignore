@@ -1,1 +1,10 @@
 # Created by .ignore support plugin (hsz.mobi)
+/build/
+/.idea/
+/.gradle/
+.gradle/
+.idea/
+build/
+photostat.iml
+photostat.ipr
+photostat.iws
