@@ -2,6 +2,7 @@
 /build/
 /.idea/
 /.gradle/
+/out/
 photostat.iml
 photostat.ipr
 photostat.iws

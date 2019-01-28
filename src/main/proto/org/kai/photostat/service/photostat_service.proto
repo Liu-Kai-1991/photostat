@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/protobuf/timestamp.proto";
+
 option java_multiple_files = true;
 option java_package = "org.kai.photostat.service";
 option java_outer_classname = "PhotoStatServiceProto";
@@ -9,7 +11,8 @@ package org.kai.photostat.service;
 // The PhotoStatService definition.
 service PhotoStatService {
   // Asking the server to respond with photo statistic information
-  rpc GetPhotoStat (GetPhotoStatRequest) returns (stream GetPhotoStatResponse) {}
+  rpc GetPhotoStat (GetPhotoStatRequest) returns (stream GetPhotoStatResponse) {
+  }
 }
 
 message GetPhotoStatRequest {
@@ -17,5 +20,21 @@ message GetPhotoStatRequest {
 }
 
 message GetPhotoStatResponse {
-  string dummy_response = 1;
+  oneof progress_or_complete {
+    int64 num_finished_photos = 1;
+    PhotoStatistics photo_statistics = 2;
+  }
+}
+
+message PhotoStatistics {
+  repeated MetadataAggregation meta_data_aggregation = 1;
+}
+
+message MetadataAggregation {
+  string exposureTime = 1;
+  string focalLength = 2;
+  string fNumber = 3;
+  string cameraMake = 4;
+  string lensModel = 5;
+  repeated google.protobuf.Timestamp timestamp = 6;
 }
